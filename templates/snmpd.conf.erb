@@ -25,8 +25,9 @@ agentaddress <%= @agentaddress.join(',') %>
 com2sec notConfigUser  default       <%= @ro_community %>
 
 #       groupName      securityModel securityName
-group   notConfigGroup v1            notConfigUser
-group   notConfigGroup v2c           notConfigUser
+<% @groups.each do |group| -%>
+group   <%= group %>
+<% end -%>
 
 #       name          incl/excl  subtree             mask(optional)
 <% @views.each do |view| -%>

@@ -51,6 +51,14 @@ class snmp::params {
     default => $::snmp_contact,
   }
 
+  $groups = $::snmp_groups ? {
+    undef   => [
+      'group   notConfigGroup v1            notConfigUser',
+      'group   notConfigGroup v2c           notConfigUser'
+    ],
+    default => $::snmp_groups,
+  }
+
   $location = $::snmp_location ? {
     undef   => 'Unknown',
     default => $::snmp_location,

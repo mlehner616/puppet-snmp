@@ -33,6 +33,13 @@
 #   Responsible person for the SNMP system.
 #   Default: Unknown
 #
+# [*groups*]
+#   An array of groups that are available to query
+#   Must provide groupName, securityModel, and SecurityName
+#   See http://www.net-snmp.org/docs/man/snmpd.conf.html#lbAL for details.
+#   Default: [ 'group notConfigGroup v1  notConfigUser',
+#              'group notConfigGroup v2c notConfigUser' ]
+#
 # [*location*]
 #   Location of the SNMP system.
 #   Default: Unknown
@@ -213,6 +220,7 @@ class snmp (
   $ro_network              = $snmp::params::ro_network,
   $rw_network              = $snmp::params::rw_network,
   $contact                 = $snmp::params::contact,
+  $groups                  = $snmp::params::groups,
   $location                = $snmp::params::location,
   $views                   = $snmp::params::views,
   $accesses                = $snmp::params::accesses,
@@ -254,6 +262,7 @@ class snmp (
   validate_array($trap_forwards)
   validate_array($snmp_config)
   validate_array($views)
+  validate_array($groups)
   validate_array($accesses)
   validate_array($dlmod)
   validate_array($snmpd_config)
